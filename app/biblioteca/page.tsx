@@ -1,9 +1,9 @@
 export default function BibliotecaPage() {
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
-      <div className="max-w-5xl mx-auto px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12">
 
-        <h1 className="text-5xl font-serif font-semibold mb-10">
+        <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-8 md:mb-10">
           Biblioteca
         </h1>
 
@@ -12,7 +12,7 @@ export default function BibliotecaPage() {
           en las mejores ediciones que quepa encontrar que sean de dominio público.
         </p>
 
-        <div className="rounded-xl border border-stone-300 bg-white p-8 shadow-sm">
+        <div className="rounded-xl border border-stone-300 bg-white p-6 md:p-8 shadow-sm">
 
           <h2 className="text-2xl font-semibold mb-4">
             Próximamente
