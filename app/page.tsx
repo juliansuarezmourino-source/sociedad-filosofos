@@ -38,12 +38,11 @@ const ultimoArticulo = data?.[0];
             <p className="text-xl leading-10 text-stone-700">
               La Sociedad de Filósofos Autodidactas nace con el propósito de
               reunir, fundamentalmente, a quienes estudian filosofía motu proprio y al margen del ámbito universitario,
-              identidad que no constituye, a su vez, ningún desprecio a la persona vinculada a la administración de la enseñaza (cuya participación también pedimos),
+              identidad que no constituye ningún desprecio a la persona vinculada a la administración de la enseñaza (cuya participación también pedimos),
               sino que, sencillamente, marca un hecho identitario y funda una razón social no excluyente. 
               Este proyecto comienza como una comunidad de
               intereses que crecerá progresivamente mediante publicaciones, una
-              biblioteca digital, el canal de YouTube{" "}
-              <strong>@juliansuarezmourino</strong> y futuras iniciativas de
+              biblioteca digital, el canal de YouTube Julián Suárez Mouriño y futuras iniciativas de
               educación mutua y gratuita.
             </p>
              

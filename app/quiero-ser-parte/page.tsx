@@ -59,11 +59,12 @@ export default function QuieroSerPartePage() {
           La Sociedad de Filósofos Autodidactas quiere la colaboración de todo individuo, académico o no, que considere
           el estudio de la filosofía un deber individual. Uno que puede y debe ser cumplido con independiencia
           del buen o mal funcionamiento de las Universidades y de la administración pública en general. Un deber individual que, 
-          justamente por ser individual, es la razón de la colaboración consciententemente individual y del trabajo investigador bajo un sentido común.
+          justamente por ser individual, es la razón de la colaboración consciententemente individual y del trabajo investigador bajo un sentido propio.
           Ojalá un horno de ciudadanos hechos con el martillo de la virtud íntima y privada y no uno de panes calientes cocidos
           en la comodidad de los despachos y pupitres universitarios, aperitivos del mercado.
-          Uníos, en definitiva, todos cuantos queráis formar parte de unas iniciativas de estudio, publicación
-          e investigación independientes, que se irán definiendo a medida que sumemos más brazos, el trabajo se acumule y dé sus frutos.
+          Uníos gratuitamente, en definitiva, todos cuantos queráis formar parte de unas iniciativas de estudio, publicación
+          e investigación independientes, que se irán definiendo a medida que crezcamos, tanto aquí, como en el corazón de este proyecto,
+          el canal de youtube Julián Suárez Mouriño.
           
         </p>
 
