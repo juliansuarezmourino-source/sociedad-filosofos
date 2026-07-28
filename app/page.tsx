@@ -18,24 +18,24 @@ const ultimoArticulo = data?.[0];
 
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
-      <div className="max-w-6xl mx-auto px-8 py-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-6 md:py-10">
 
         <header className="text-center mb-12">
-          <h1 className="text-6xl font-serif font-semibold tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-serif font-semibold tracking-tight text-center">
             Sociedad de Filósofos Autodidactas
           </h1>
         </header>
 
         <section className="grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
 
-        <article className="border border-stone-300 rounded-xl p-10 bg-white shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">
+        <article className="border border-stone-300 rounded-xl p-6 md:p-10 bg-white shadow-sm">
+            <h2 className="text-xl md:text-2xl font-semibold mb-6">
               <strong>
                 UNA SOCIEDAD PARA INDIVIDUOS QUE SE IMPUTAN A SÍ MISMOS LA RESPONSABILIDAD DE FORMARSE
               </strong>
             </h2>
 
-            <p className="text-xl leading-10 text-stone-700">
+            <p className="text-lg md:text-xl leading-8 md:leading-10 text-stone-700">
               La Sociedad de Filósofos Autodidactas nace con el propósito de
               reunir, fundamentalmente, a quienes estudian filosofía motu proprio y al margen del ámbito universitario,
               identidad que no constituye ningún desprecio a la persona vinculada a la administración de la enseñaza (cuya participación también pedimos),
@@ -46,7 +46,7 @@ const ultimoArticulo = data?.[0];
               educación mutua y gratuita.
             </p>
              
-<section className="grid grid-cols-2 gap-4 mt-8">
+<section className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
 
 <a
   href="/publicaciones"
@@ -86,10 +86,10 @@ const ultimoArticulo = data?.[0];
     alt="Julián Suárez"
     width={430}
     height={430}
-    className="rounded-xl shadow-lg"
+    className="rounded-xl shadow-lg w-full h-auto max-w-[430px]"
   />
 
-  <div className="mt-4 w-full rounded-xl border border-stone-300 bg-stone-50 p-8 shadow-sm">
+  <div className="mt-4 w-full rounded-xl border border-stone-300 bg-stone-50 p-6 md:p-8 shadow-sm">
 
     <h3 className="text-2xl font-serif font-semibold border-b border-stone-300 pb-3 mb-6">
       Contacto
@@ -145,11 +145,11 @@ const ultimoArticulo = data?.[0];
 {ultimoArticulo && (
   <section className="mt-12">
 
-    <h2 className="text-3xl font-serif font-semibold">
+    <h2 className="text-2xl md:text-3xl font-serif font-semibold">
       Últimas publicaciones
     </h2>
 
-    <div className="mt-6 rounded-xl border border-stone-300 bg-white p-8 shadow-sm">
+    <div className="mt-6 rounded-xl border border-stone-300 bg-white p-6 md:p-8 shadow-sm">
 
       <a
         href={`/articulos/${ultimoArticulo.slug}`}
