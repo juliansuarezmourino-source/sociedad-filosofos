@@ -49,13 +49,13 @@ export default function QuieroSerPartePage() {
 
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
-      <div className="max-w-5xl mx-auto px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 md:py-12">
 
-        <h1 className="text-5xl font-serif font-semibold mb-10">
+        <h1 className="text-3xl md:text-5xl font-serif font-semibold mb-8 md:mb-10">
           Quiero ser parte
         </h1>
 
-        <p className="text-xl leading-10 text-stone-700 mb-10 text-justify">
+        <p className="text-lg md:text-xl leading-8 md:leading-10 text-stone-700 mb-8 md:mb-10 text-justify">
           La Sociedad de Filósofos Autodidactas quiere la colaboración de todo individuo, académico o no, que considere
           el estudio de la filosofía un deber individual. Uno que puede y debe ser cumplido con independiencia
           del buen o mal funcionamiento de las Universidades y de la administración pública en general. Un deber individual que, 
@@ -68,9 +68,9 @@ export default function QuieroSerPartePage() {
           
         </p>
 
-        <div className="grid grid-cols-2 gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-start">
 
-          <section className="rounded-xl border border-stone-300 bg-white p-8 shadow-sm">
+          <section className="rounded-xl border border-stone-300 bg-white p-6 md:p-8 shadow-sm">
 
             <h2 className="text-2xl font-semibold mb-6">
               Solicitud de incorporación
@@ -114,12 +114,7 @@ export default function QuieroSerPartePage() {
               >
                 Quiero ser parte
               </button>
-              <button
-  type="submit"
-  className="w-full rounded-lg bg-stone-900 py-3 text-white hover:bg-stone-700"
->
-  Quiero ser parte
-</button>
+             
 
 <label className="flex items-start gap-3 text-sm text-stone-600 leading-6">
 
@@ -143,7 +138,7 @@ export default function QuieroSerPartePage() {
 
           </section>
 
-          <aside className="rounded-xl border border-stone-300 bg-white p-8 shadow-sm self-start min-h-[700px]">
+          <aside className="rounded-xl border border-stone-300 bg-white p-6 md:p-8 shadow-sm self-start">
 
             <h2 className="text-2xl font-semibold mb-6">
               Participantes
