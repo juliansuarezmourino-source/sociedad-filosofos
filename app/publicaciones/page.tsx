@@ -8,18 +8,18 @@ export default async function PublicacionesPage() {
 
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
-      <div className="max-w-5xl mx-auto px-8 py-12">
-        <h1 className="text-5xl font-serif font-semibold mb-10">
+      <div className="max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-8 md:mb-10">
           Publicaciones
         </h1>
 
-        <p className="text-xl leading-10 text-stone-700 mb-10">
+        <p className="text-lg md:text-xl leading-8 md:leading-10 text-stone-700 mb-8 md:mb-10">
           Este espacio reúne las noticias de la Sociedad, artículos, ensayos breves, notas de lectura
           y demás trabajos elaborados por los miembros de la Sociedad de Filósofos
           Autodidactas. La esperanza, en un futuro, es que el fruto de la investigación de los autodidactas, el artículo propiamente científico, viva en la Revista Momemtum.
         </p>
 
-        <div className="rounded-xl border border-stone-300 bg-white p-8 shadow-sm">
+        <div className="rounded-xl border border-stone-300 bg-white p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-semibold mb-8">
             Archivo de publicaciones
           </h2>
@@ -31,7 +31,7 @@ export default async function PublicacionesPage() {
             >
               <a
                 href={`/articulos/${articulo.slug}`}
-                className="text-2xl font-semibold hover:underline"
+                className="text-xl md:text-2xl font-semibold hover:underline"
               >
                 {articulo.titulo}
               </a>

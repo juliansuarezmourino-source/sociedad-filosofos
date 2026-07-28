@@ -58,13 +58,16 @@ export default function QuieroSerPartePage() {
         <p className="text-lg md:text-xl leading-8 md:leading-10 text-stone-700 mb-8 md:mb-10 text-justify">
           La Sociedad de Filósofos Autodidactas quiere la colaboración de todo individuo, académico o no, que considere
           el estudio de la filosofía un deber individual. Uno que puede y debe ser cumplido con independiencia
-          del buen o mal funcionamiento de las Universidades y de la administración pública en general. Un deber individual que, 
+          del funcionamiento de las universidades y de la administración pública en general. Un deber individual que, 
           justamente por ser individual, es la razón de la colaboración consciententemente individual y del trabajo investigador bajo un sentido propio.
           Ojalá un horno de ciudadanos hechos con el martillo de la virtud íntima y privada y no uno de panes calientes cocidos
           en la comodidad de los despachos y pupitres universitarios, aperitivos del mercado.
           Uníos gratuitamente, en definitiva, todos cuantos queráis formar parte de unas iniciativas de estudio, publicación
-          e investigación independientes, que se irán definiendo a medida que crezcamos, tanto aquí, como en el corazón de este proyecto,
-          el canal de youtube Julián Suárez Mouriño.
+          e investigación independientes, que se irán definiendo a medida que crezcamos, tanto aquí, como en el corazón de este proyecto:
+          el canal de youtube Julián Suárez Mouriño. Una vez introduzcáis vuestros datos, vuestro nombre aparecerá en la sección 
+          de participantes, reflejando simbólicamente vuestro apoyo tal que un índice del crecimiento de esta iniciativa. Vuestro correo electrónico solo será usado para 
+          enviaros comunicaciones referentes al desarrollo y actividad de la Sociedad, bajo estricta observancia de la Ley Orgánica de 
+          Protección de Datos.
           
         </p>
 
@@ -129,7 +132,7 @@ export default function QuieroSerPartePage() {
     facilitados (nombre, apellidos y correo electrónico) con la única finalidad
     de enviarme comunicaciones relacionadas con la Sociedad. 
     Puede solicitar el acceso, rectificación o supresión de sus datos 
-    solicitándoselo a la Presidenta de la Sociedad <strong>viviana.sangenis@gmail.com</strong>.
+    escribiendo a la Presidenta de la Sociedad <strong>viviana.sangenis@gmail.com</strong>.
   </span>
 
 </label>
