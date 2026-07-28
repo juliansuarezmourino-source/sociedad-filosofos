@@ -59,7 +59,7 @@ export default function QuieroSerPartePage() {
           La Sociedad de Filósofos Autodidactas quiere la colaboración de todo individuo, académico o no, que considere
           el estudio de la filosofía un deber individual. Uno que puede y debe ser cumplido con independiencia
           del funcionamiento de las universidades y de la administración pública en general. Un deber individual que, 
-          justamente por ser individual, es la razón de la colaboración consciententemente individual y del trabajo investigador bajo un sentido propio.
+          justamente por serlo, es la razón de la colaboración conscientente y del trabajo investigador bajo un sentido propio.
           Ojalá un horno de ciudadanos hechos con el martillo de la virtud íntima y privada y no uno de panes calientes cocidos
           en la comodidad de los despachos y pupitres universitarios, aperitivos del mercado.
           Uníos gratuitamente, en definitiva, todos cuantos queráis formar parte de unas iniciativas de estudio, publicación
