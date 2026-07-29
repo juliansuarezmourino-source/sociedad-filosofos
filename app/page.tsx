@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { supabase } from "./lib/supabase";
+export const dynamic = "force-dynamic";
 
 
 

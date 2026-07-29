@@ -1,11 +1,14 @@
 import { supabase } from "../lib/supabase";
+export const dynamic = "force-dynamic";
 
 export default async function PublicacionesPage() {
   const { data: articulos, error } = await supabase
     .from("articulos")
     .select("*")
     .order("created_at", { ascending: false });
-
+    console.log("ARTICULOS:", articulos);
+console.log("ERROR:", error);
+console.log("FORCE_DYNAMIC_ACTIVO");
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12">
