@@ -45,12 +45,12 @@ className="
   prose-stone
   font-serif
   max-w-none
-  break-all
-  text-left
+  
+  text-justify
   leading-loose
 
  
-  [&>p]:mb-0
+ [&>p]:mb-8
 
 
   [&>h1]:mt-12
