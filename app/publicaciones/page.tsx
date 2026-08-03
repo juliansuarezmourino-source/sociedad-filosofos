@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { supabase } from "../lib/supabase";
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,12 @@ console.log("FORCE_DYNAMIC_ACTIVO");
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <Link
+  href="/"
+  className="text-stone-600 hover:underline inline-block mb-6"
+>
+  ← Volver a la portada
+</Link>
         <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-8 md:mb-10">
           Publicaciones
         </h1>

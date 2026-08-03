@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 
@@ -50,6 +50,12 @@ export default function QuieroSerPartePage() {
   return (
     <main className="min-h-screen bg-stone-100 text-stone-900">
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 md:py-12">
+        <Link
+  href="/"
+  className="text-stone-600 hover:underline inline-block mb-6"
+>
+  ← Volver a la portada
+</Link>
 
         <h1 className="text-3xl md:text-5xl font-serif font-semibold mb-8 md:mb-10">
           Quiero ser parte
