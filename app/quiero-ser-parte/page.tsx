@@ -9,6 +9,7 @@ export default function QuieroSerPartePage() {
   const [nombre, setNombre] = useState("");
   const [apellidos, setApellidos] = useState("");
   const [email, setEmail] = useState("");
+  const [enviando, setEnviando] = useState(false);
 
   async function cargarParticipantes() {
     const { data } = await supabase
@@ -25,6 +26,8 @@ export default function QuieroSerPartePage() {
 
   async function enviarFormulario(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (enviando) return;
+setEnviando(true);
 
     const { error } = await supabase
       .from("participantes")
@@ -34,17 +37,25 @@ export default function QuieroSerPartePage() {
         email,
       });
 
-    if (error) {
-      alert("Error al guardar el participante.");
-      console.error(error);
-      return;
-    }
+if (error) {
+  setEnviando(false);
+
+  if (error.code === "23505") {
+    alert("Este correo ya forma parte de la Sociedad de Filósofos Autodidactas.");
+  } else {
+    alert("Error al guardar el participante.");
+    console.error(error);
+  }
+
+  return;
+}
 
     setNombre("");
     setApellidos("");
     setEmail("");
 
     await cargarParticipantes();
+    setEnviando(false);
   }
 
   return (
@@ -117,12 +128,13 @@ export default function QuieroSerPartePage() {
                 required
               />
 
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-stone-900 py-3 text-white hover:bg-stone-700"
-              >
-                Quiero ser parte
-              </button>
+<button
+  type="submit"
+  disabled={enviando}
+  className="w-full rounded-lg bg-stone-900 py-3 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  {enviando ? "Enviando..." : "Quiero ser parte"}
+</button>
              
 
 <label className="flex items-start gap-3 text-sm text-stone-600 leading-6">
