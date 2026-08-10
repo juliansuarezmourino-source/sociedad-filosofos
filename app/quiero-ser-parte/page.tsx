@@ -40,7 +40,9 @@ setEnviando(true);
 if (error) {
   setEnviando(false);
 
-  if (error.code === "23505") {
+  if (error.code === "P0001") {
+    alert("Este correo no puede formar parte de la Sociedad de Filósofos Autodidactas.");
+  } else if (error.code === "23505") {
     alert("Este correo ya forma parte de la Sociedad de Filósofos Autodidactas.");
   } else {
     alert("Error al guardar el participante.");
