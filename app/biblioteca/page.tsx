@@ -25,13 +25,13 @@ export default async function BibliotecaPage() {
           Biblioteca
         </h1>
 
-        <p className="text-xl leading-10 text-stone-700 mb-10">
+       <p className="text-xl leading-10 text-stone-700 mb-10 text-justify">
           La Biblioteca de la Sociedad de Filósofos Autodidactas será un
           archivo con las grandes obras del pensamiento en las mejores
-          ediciones que quepa encontrar que sean de dominio público y cuyo destino será facilitar
+          ediciones que quepa encontrar que sean de dominio público. Su destino principal será facilitar
           la investigación con visos de rigor científico de los autodidactas.
           Todo aquello que sea autoridad científica al respecto de cada tema y que no pueda alojarse aquí
-          por cuestiones jurídicas será referenciado. 
+          por cuestiones jurídicas será referenciado como consejo para su estricta consideración investigadora. 
         </p>
 
         {error ? (

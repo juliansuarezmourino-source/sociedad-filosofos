@@ -128,14 +128,14 @@ const { data: recursos, error: recursosError } = obra
               Sociedad respecto de la denominada «filosofía presocrática».
             </p>
 
-            <a
-              href={articuloMarzoa.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold hover:underline"
-            >
-              Leer artículo →
-            </a>
+<Link
+  href="/biblioteca/filosofia-presocratica/felipe-martinez-marzoa-hacia-una-hermeneutica-de-los-generos-poeticos-griegos"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="font-semibold hover:underline"
+>
+  Leer artículo →
+</Link>
           </section>
         )}
 
@@ -178,6 +178,12 @@ const { data: recursos, error: recursosError } = obra
   <h2 className="text-3xl font-semibold mb-6">
     Disponibilidad digital abierta
   </h2>
+  <p className="text-sm text-stone-500 mb-6">
+  Nota: Los recursos de Scaife ATLAS (Perseus) pueden tardar unos segundos en cargar.
+  Durante ese intervalo, el navegador puede mostrar temporalmente un mensaje
+  de error de conexión. La página debería cargarse automáticamente al cabo
+  de unos instantes.
+</p>
 
   {recursosError ? (
     <div className="rounded-xl border border-red-300 bg-red-50 p-6">
