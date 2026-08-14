@@ -83,7 +83,7 @@ if (error) {
           en la comodidad de los despachos y pupitres universitarios, aperitivos del mercado.
           Uníos gratuitamente, en definitiva, todos cuantos queráis formar parte de unas iniciativas de estudio, publicación
           e investigación independientes, que se irán definiendo a medida que crezcamos, tanto aquí, como en el corazón de este proyecto:
-          el canal de youtube Julián Suárez Mouriño. Una vez introduzcáis vuestros datos, vuestro nombre aparecerá en la sección 
+          el canal de YouTube Julián Suárez Mouriño. Una vez introduzcáis vuestros datos, vuestro nombre aparecerá en la sección 
           de participantes, reflejando simbólicamente vuestro apoyo tal que un índice del crecimiento de esta iniciativa. Vuestro correo electrónico solo será usado para 
           enviaros comunicaciones referentes al desarrollo y actividad de la Sociedad, bajo estricta observancia de la Ley Orgánica de 
           Protección de Datos.
