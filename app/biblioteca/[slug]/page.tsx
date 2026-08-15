@@ -119,7 +119,7 @@ const { data: recursos, error: recursosError } = obra
             el saber qué incluimos y qué dejamos fuera como filosofía una vez tal identidad emerge clara a la conciencia
             griega y puede el griego decidir, a sabiendas, ser lo uno o lo otro (Siglos V-IV a.C.).
             Así es que Sófocles, en la medida en que pudo decidir tal cosa, quedará fuera de dicha historia, mientras que Hesíodo dentro. 
-            Sin embargo, la menor dificultad convencional no implica que se 
+            Sin embargo, la menor dificultad convencional no implica que no se 
             mantenga en pie la eterna duda de 
             si es lícito tomar la noción de «filósofo» de Platón (o de cualquier otro) como regla
             de la identidad de nada, es decir, si, por ejemplo, Sófocles aceptó la alternativa en esos términos y efectivamente
