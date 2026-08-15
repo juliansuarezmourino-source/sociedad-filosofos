@@ -107,10 +107,23 @@ const { data: recursos, error: recursosError } = obra
             cliché en cuestión conserva su utilidad como convención científica
             de la investigación, este se respetará, si bien con la reserva de
             que el Fundador juzga que la pertenencia de Tales, Parménides, etc.,
-            es de la índole «géneros poéticos griegos arcaicos» y no de la
-            índole «filosofía». Es decir, que la vinculación legítima de estos
+            es de la índole «géneros poéticos griegos» y no de la
+            índole «filosofía», índole aquella que alude a la posibilidad de una
+            comprensión sincrónica de la «filosofía presocrática». Es decir, que la vinculación legítima de estos
             «pensadores» es más bien en relación a Homero y a Hesíodo y no en
-            relación a Platón y a Aristóteles.
+            relación a Platón y a Aristóteles. A pesar de ello, siendo Platón, 
+            en relación con las fuentes con las que contamos, el teórico de la identidad
+            «filosofía», la inclusión de cuanta obra de «género poético» o «literario» se incluya anterior a Platón
+            se hará, siempre problemáticamente, por hipotética relación con dicha identidad (es decir:
+            también bajo un sentido diacrónico). No será ya tan problemático
+            el saber qué incluimos y qué dejamos fuera como filosofía una vez tal identidad emerge clara a la conciencia
+            griega y puede el griego a sabiendas decidir ser lo uno o lo otro (Siglos V-IV a.C.).
+            Así es que Sófocles, en la medida en que pudo decidir tal cosa, quedará fuera de dicha historia, mientras que Hesíodo dentro. 
+            Sin embargo, la menor dificultad convencional no implica que se 
+            mantenga en pie la eterna duda de 
+            si es lícito tomar la noción de «filósofo» de Platón (o de cualquier otro) como regla
+            de la identidad de nada, es decir, si, por ejemplo, Sófocles aceptó la alternativa en esos términos y efectivamente
+            decidió no ser filósofo, o solo decidió no serlo a la manera platónica.
           </p>
         </section>
 
