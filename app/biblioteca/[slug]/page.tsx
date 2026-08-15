@@ -120,7 +120,7 @@ const recursosPorAutor = (recursos ?? []).reduce(
             «pensadores» es más bien en relación a Homero y a Hesíodo y no en
             relación a Platón y a Aristóteles. A pesar de ello, siendo (Sócrates-)Platón, 
             en relación con las fuentes con las que contamos, el teórico de la identidad
-            «filosofía», la inclusión de cuanta obra de «género poético» o «literario» se incluya anterior a Platón
+            «filosofía», la inclusión de cuanta obra de «género poético» o «literario» se incluya (~)anterior a (Sócrates-)Platón
             se hará, siempre problemáticamente, también por hipotética relación con dicha identidad (es decir:
             también bajo un sentido diacrónico). No será ya tan problemático
             el saber qué incluimos y qué dejamos fuera como filosofía una vez tal identidad emerge clara a la conciencia
