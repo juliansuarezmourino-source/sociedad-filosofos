@@ -21,9 +21,16 @@ const { data: recursos, error: recursosError } = obra
       .eq("obra_id", obra.id)
       .order("orden", { ascending: true })
   : { data: null, error: null };
-  const recursosPorAutor = (recursos ?? []).reduce(
+  const autoresPorTitulo: Record<string, string> = {
+  Ilíada: "Homero",
+  Odisea: "Homero",
+  Teogonía: "Hesíodo",
+  "Trabajos y días": "Hesíodo",
+};
+
+const recursosPorAutor = (recursos ?? []).reduce(
   (acc: Record<string, any[]>, recurso) => {
-    const autor = recurso.autor || "Otros recursos";
+    const autor = autoresPorTitulo[recurso.titulo] || "Otros recursos";
 
     if (!acc[autor]) {
       acc[autor] = [];
@@ -190,14 +197,15 @@ const { data: recursos, error: recursosError } = obra
 
 <section className="mt-10">
   <h2 className="text-3xl font-semibold mb-6">
-    Disponibilidad digital abierta
+    Disponibilidad: consulta online y descarga cuando sea legítimo
   </h2>
+
   <p className="text-sm text-stone-500 mb-6">
-  Nota: Los recursos de Scaife ATLAS (Perseus) pueden tardar unos segundos en cargar.
-  Durante ese intervalo, el navegador puede mostrar temporalmente un mensaje
-  de error de conexión. La página debería cargarse automáticamente al cabo
-  de unos instantes.
-</p>
+    Nota: Los recursos de Scaife ATLAS (Perseus) pueden tardar unos segundos en cargar.
+    Durante ese intervalo, el navegador puede mostrar temporalmente un mensaje
+    de error de conexión. La página debería cargarse automáticamente al cabo
+    de unos instantes.
+  </p>
 
   {recursosError ? (
     <div className="rounded-xl border border-red-300 bg-red-50 p-6">
@@ -208,37 +216,33 @@ const { data: recursos, error: recursosError } = obra
   ) : recursosDigitales.length > 0 ? (
     <div className="space-y-8">
 
-      {Object.entries(
-        recursosDigitales.reduce(
-          (acc: Record<string, any[]>, recurso) => {
-            const autor = recurso.autor || "Otros recursos";
+{Object.entries(
+  recursosDigitales.reduce(
+    (acc: Record<string, any[]>, recurso) => {
+      const autor =
+        autoresPorTitulo[recurso.titulo] || "Otros recursos";
 
-            if (!acc[autor]) {
-              acc[autor] = [];
-            }
+      if (!acc[autor]) {
+        acc[autor] = [];
+      }
 
-            acc[autor].push(recurso);
+      acc[autor].push(recurso);
 
-            return acc;
-          },
-          {}
-        )
-      ).map(([autor, recursosAutor]) => {
+      return acc;
+    },
+    {}
+  )
+).map(([autor, recursosAutor]) => {
 
         const obras = recursosAutor.reduce(
-          (acc: Record<string, any>, recurso) => {
+          (acc: Record<string, any[]>, recurso) => {
             const titulo = recurso.titulo || "Sin título";
 
             if (!acc[titulo]) {
-              acc[titulo] = {
-                url: recurso.url,
-                idiomas: [],
-              };
+              acc[titulo] = [];
             }
 
-            if (recurso.idioma) {
-              acc[titulo].idiomas.push(recurso.idioma);
-            }
+            acc[titulo].push(recurso);
 
             return acc;
           },
@@ -247,27 +251,73 @@ const { data: recursos, error: recursosError } = obra
 
         return (
           <section key={autor}>
-            <h3 className="text-2xl font-semibold mb-3">
+            <h3 className="text-2xl font-semibold mb-4">
               {autor}
             </h3>
 
-            <div className="space-y-2">
+            <div className="space-y-6">
 
-              {Object.entries(obras).map(
-                ([titulo, obra]) => (
-                  <a
-                    key={titulo}
-                    href={obra.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-lg text-stone-700 hover:underline"
-                  >
-                    <em>{titulo}</em>
-                    {" — "}
-                    {obra.idiomas.join(" · ")}
-                  </a>
-                )
-              )}
+              {Object.entries(obras).map(([titulo, recursosObra]) => {
+
+                const consultasOnline = recursosObra.filter(
+                  (recurso) => recurso.tipo === "texto"
+                );
+
+                const descargas = recursosObra.filter(
+                  (recurso) => recurso.tipo === "descarga"
+                );
+
+                return (
+                  <div key={titulo} className="space-y-2">
+
+                    <h4 className="text-xl font-semibold">
+                      <em>{titulo}</em>
+                    </h4>
+
+                    {consultasOnline.length > 0 && (
+                      <p className="text-lg text-stone-700">
+                        <span className="font-medium">
+                          Consulta online:
+                        </span>{" "}
+                        {consultasOnline.map((recurso, index) => (
+                          <span key={recurso.id}>
+                            <a
+                              href={recurso.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:underline"
+                            >
+                              {recurso.idioma}
+                            </a>
+                            {index < consultasOnline.length - 1 && " · "}
+                          </span>
+                        ))}
+                      </p>
+                    )}
+
+                    {descargas.map((recurso) => (
+                      <p
+                        key={recurso.id}
+                        className="text-lg text-stone-700"
+                      >
+                        <span className="font-medium">
+                          Descarga libre de derechos:
+                        </span>{" "}
+                        {recurso.descripcion}{" "}
+                        <a
+                          href={recurso.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold hover:underline"
+                        >
+                          [PDF]
+                        </a>
+                      </p>
+                    ))}
+
+                  </div>
+                );
+              })}
 
             </div>
           </section>
