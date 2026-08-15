@@ -117,7 +117,7 @@ const { data: recursos, error: recursosError } = obra
             se hará, siempre problemáticamente, por hipotética relación con dicha identidad (es decir:
             también bajo un sentido diacrónico). No será ya tan problemático
             el saber qué incluimos y qué dejamos fuera como filosofía una vez tal identidad emerge clara a la conciencia
-            griega y puede el griego a sabiendas decidir ser lo uno o lo otro (Siglos V-IV a.C.).
+            griega y puede el griego, a sabiendas, decidir ser lo uno o lo otro (Siglos V-IV a.C.).
             Así es que Sófocles, en la medida en que pudo decidir tal cosa, quedará fuera de dicha historia, mientras que Hesíodo dentro. 
             Sin embargo, la menor dificultad convencional no implica que se 
             mantenga en pie la eterna duda de 
