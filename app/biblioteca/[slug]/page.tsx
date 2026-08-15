@@ -81,12 +81,12 @@ const { data: recursos, error: recursosError } = obra
         </Link>
 
         <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-6">
-          Filosofía presocrática
+          «Filosofía presocrática»
         </h1>
 
         <p className="text-xl leading-10 text-stone-700 mb-8">
           Selección de textos y recursos digitales para el estudio de la
-          filosofía presocrática.
+          «filosofía presocrática».
         </p>
 
         {/* NOTA METODOLÓGICA */}
