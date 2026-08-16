@@ -164,16 +164,16 @@ const recursosPorAutor = (recursos ?? []).reduce(
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-3">
-            Autoridad académica actual
+            Edición italiana reciente que incorpora los últimos descubrimientos y avances de la investigación
           </h2>
 
-          <p className="text-lg leading-8 text-stone-700">
-            M. Laura Gemelli-Marciano,{" "}
-            <em>Presocratici. Sentieri di sapienza</em>, Fondazione Lorenzo
-            Valla, 2023–2025. Nueva edición crítica, revisada y ampliada, que
-            incorpora el estado posterior de la investigación y establece
-            concordancias con Diels-Kranz y otras colecciones modernas.
-          </p>
+<p className="text-lg leading-8 text-stone-700">
+  M. Laura Gemelli-Marciano, <em>Presocratici. Sentieri di sapienza</em>,
+  Fondazione Lorenzo Valla – Mondadori, 2023–2025. Edición italiana revisada y
+  ampliada, que incorpora nuevos testimonios y materiales de la investigación
+  reciente, junto con traducción, introducciones y comentarios. Incluye además
+  tablas de concordancia con Diels-Kranz y otras colecciones modernas.
+</p>
         </section>
 
         {/* REFERENCIA HISTÓRICA */}
