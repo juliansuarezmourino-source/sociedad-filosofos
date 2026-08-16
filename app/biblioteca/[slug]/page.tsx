@@ -122,11 +122,13 @@ const recursosPorAutor = (recursos ?? []).reduce(
             relación a Platón y a Aristóteles. A pesar de ello, siendo (Sócrates-)Platón, 
             en relación con las fuentes con las que contamos, el teórico de la identidad
             «filosofía», la inclusión de cuanta obra de «género poético» o «literario» se incluya (~)anterior a (Sócrates-)Platón
-            se hará, siempre problemáticamente, también por hipotética relación con dicha identidad (es decir:
+            se hará, siempre problemáticamente, también por hipotética relación histórica
+            y hermenéutica con dicha identidad (es decir:
             también bajo un sentido diacrónico). No será ya tan problemático
             el saber qué incluimos y qué dejamos fuera como filosofía una vez tal identidad emerge clara a la conciencia
             griega y puede el griego decidir, a sabiendas, ser lo uno o lo otro (Siglos V-IV a.C.).
-            Así es que Sófocles, en la medida en que, asumiremos, pudo decidir tal cosa, quedará fuera de dicha historia, mientras que Hesíodo dentro. 
+            Así es que Sófocles, en la medida en que, asumiremos, pudo decidir tal cosa, quedará fuera de dicha historia, mientras que
+            Hesíodo puede quedar dentro. 
             Sin embargo, la menor dificultad convencional no implica que no se 
             mantenga en pie la eterna duda de 
             si es lícito tomar la noción de «filósofo» de Platón (o de cualquier otro) como regla
