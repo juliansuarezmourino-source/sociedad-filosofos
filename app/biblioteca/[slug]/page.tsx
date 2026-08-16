@@ -21,7 +21,8 @@ const { data: recursos, error: recursosError } = obra
       .eq("obra_id", obra.id)
       .order("orden", { ascending: true })
   : { data: null, error: null };
-  const autoresPorTitulo: Record<string, string> = {
+const autoresPorTitulo: Record<string, string> = {
+  "Die Fragmente der Vorsokratiker": "Hermann Diels",
   Ilíada: "Homero",
   Odisea: "Homero",
   Teogonía: "Hesíodo",
@@ -251,9 +252,9 @@ const recursosPorAutor = (recursos ?? []).reduce(
 
         return (
           <section key={autor}>
-            <h3 className="text-2xl font-semibold mb-4">
-              {autor}
-            </h3>
+           <h3 className="text-2xl font-semibold mb-2">
+  {autor}
+</h3>
 
             <div className="space-y-6">
 
@@ -270,9 +271,9 @@ const recursosPorAutor = (recursos ?? []).reduce(
                 return (
                   <div key={titulo} className="space-y-2">
 
-                    <h4 className="text-xl font-semibold">
-                      <em>{titulo}</em>
-                    </h4>
+                    <h4 className="text-lg font-medium italic mb-3">
+  {titulo}
+</h4>
 
                     {consultasOnline.length > 0 && (
                       <p className="text-lg text-stone-700">
