@@ -11,14 +11,14 @@ export default function QuieroSerPartePage() {
   const [email, setEmail] = useState("");
   const [enviando, setEnviando] = useState(false);
 
-  async function cargarParticipantes() {
-    const { data } = await supabase
-      .from("participantes")
-      .select("*")
-      .order("created_at", { ascending: true });
+async function cargarParticipantes() {
+  const { data } = await supabase
+    .from("participantes_publicos")
+    .select("id, nombre, apellidos, created_at")
+    .order("created_at", { ascending: true });
 
-    setParticipantes(data ?? []);
-  }
+  setParticipantes(data ?? []);
+}
 
   useEffect(() => {
     cargarParticipantes();
