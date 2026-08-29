@@ -1,9 +1,13 @@
+import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { Resend } from "resend";
 import { jwtVerify } from "jose";
 import { AUTH_COOKIE, AUTH_SECRET } from "../../../auth";
-
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SECRET_KEY!
+);
 export async function POST(request: Request) {
   // Comprobar que existe la cookie de autenticación
   const cookieStore = await cookies();
@@ -49,22 +53,83 @@ export async function POST(request: Request) {
 
     const resend = new Resend(apiKey);
 
-    const { to, subject, html } = await request.json();
+const { titulo, slug } = await request.json();
 
-    if (!to || !subject || !html) {
-      return NextResponse.json(
-        { ok: false, error: "Faltan datos para enviar el correo" },
-        { status: 400 }
-      );
-    }
+if (!titulo || !slug) {
+  return NextResponse.json(
+    { ok: false, error: "Faltan datos del artículo" },
+    { status: 400 }
+  );
+}
 
-    const { data, error } = await resend.emails.send({
-      from:
-        "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
-      to,
-      subject,
-      html,
-    });
+const { data: participantes, error: participantesError } =
+  await supabaseAdmin
+    .from("participantes")
+    .select("email")
+    .not("email", "is", null)
+    .neq("email", "");
+
+if (participantesError) {
+  console.error("Error obteniendo participantes:", participantesError);
+
+  return NextResponse.json(
+    { ok: false, error: "No se pudieron obtener los destinatarios" },
+    { status: 500 }
+  );
+}
+
+const destinatarios = participantes.map((participante) => participante.email);
+
+const subject = `Sociedad de Filósofos Autodidactas — ${titulo}`;
+
+const url = `https://www.sociedaddefilosofosautodidactas.org/articulos/${slug}`;
+
+const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body style="margin:0; padding:0; background:#f5f3ef; font-family: Georgia, 'Times New Roman', serif; color:#1c1c1c;">
+  <div style="max-width:650px; margin:40px auto; background:#ffffff; padding:48px;">
+    
+    <div style="font-size:20px; margin-bottom:40px;">
+      Sociedad de Filósofos Autodidactas
+    </div>
+
+    <p style="font-size:17px; line-height:1.7;">
+      Ponemos a disposición de los participantes una nueva publicación para su lectura.
+    </p>
+
+    <h1 style="font-size:30px; line-height:1.3; font-weight:normal; margin:35px 0;">
+      ${titulo}
+    </h1>
+
+    <p style="margin:35px 0;">
+      <a
+        href="${url}"
+        style="display:inline-block; background:#1c1c1c; color:#ffffff; text-decoration:none; padding:14px 24px; font-family:Arial, sans-serif; font-size:14px;"
+      >
+        Leer el artículo
+      </a>
+    </p>
+
+    <div style="margin-top:60px; padding-top:20px; border-top:1px solid #ddd; font-size:14px; color:#666;">
+      Sociedad de Filósofos Autodidactas
+    </div>
+
+  </div>
+</body>
+</html>
+`;
+
+const { data, error } = await resend.emails.send({
+  from:
+    "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
+  to: destinatarios,
+  subject,
+  html,
+});
 
     if (error) {
       console.error("Error de Resend:", error);

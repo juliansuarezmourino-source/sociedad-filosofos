@@ -33,11 +33,33 @@ async function eliminarArticulo(id: number) {
   const resultado = await respuesta.json();
 
   if (!respuesta.ok) {
-    console.error(resultado);
+    console.error("ERROR DEL SERVIDOR:", resultado.error);
     return;
   }
 
   await cargarArticulos();
+}
+async function enviarArticulo(articulo: any) {
+  const respuesta = await fetch("/api/enviar-correo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      titulo: articulo.titulo,
+      slug: articulo.slug,
+    }),
+  });
+
+  const resultado = await respuesta.json();
+
+  if (!respuesta.ok) {
+    console.error(resultado);
+    alert("No se pudo enviar el correo.");
+    return;
+  }
+
+  alert("Correo enviado correctamente.");
 }
 async function publicarArticulo(
   event: FormEvent<HTMLFormElement>
@@ -220,6 +242,13 @@ formulario.reset();
   className="bg-blue-600 text-white px-4 py-2 rounded-lg ml-2"
 >
   Editar
+</button>
+<button
+  type="button"
+  onClick={() => enviarArticulo(articulo)}
+  className="bg-stone-700 text-white px-4 py-2 rounded-lg ml-2"
+>
+  Enviar
 </button>
 </div>
     </div>
