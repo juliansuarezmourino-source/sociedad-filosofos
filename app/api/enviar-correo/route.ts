@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
     const { data, error } = await resend.emails.send({
       from:
-        "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilósofosautodidactas.org>",
+        "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
       to,
       subject,
       html,
