@@ -22,13 +22,18 @@ console.log("data:", data);
   setArticulos(data ?? []);
 }
 async function eliminarArticulo(id: number) {
-  const { error } = await supabase
-    .from("articulos")
-    .delete()
-    .eq("id", id);
+  const respuesta = await fetch("/api/admin/articulos", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
+  });
 
-  if (error) {
-    console.error(error);
+  const resultado = await respuesta.json();
+
+  if (!respuesta.ok) {
+    console.error(resultado);
     return;
   }
 
@@ -56,25 +61,48 @@ const slug = titulo
 let error = null;
 
 if (articuloEditando) {
-    ({ error } = await supabase
-        .from("articulos")
-        .update({
-            titulo,
-            slug,
-            descripcion,
-            contenido,
-            autor,
-        })
-        .eq("id", articuloEditando.id));
+  const respuesta = await fetch("/api/admin/articulos", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: articuloEditando.id,
+      titulo,
+      slug,
+      descripcion,
+      contenido,
+      autor,
+    }),
+  });
+
+  const resultado = await respuesta.json();
+
+  if (!respuesta.ok) {
+    console.error(resultado);
+    return;
+  }
 } else {
-    ({ error } = await supabase.from("articulos").insert({
-        titulo,
-        slug,
-        descripcion,
-        contenido,
-        autor,
-        publicado: true,
-    }));
+  const respuesta = await fetch("/api/admin/articulos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      titulo,
+      slug,
+      descripcion,
+      contenido,
+      autor,
+    }),
+  });
+
+  const resultado = await respuesta.json();
+
+  if (!respuesta.ok) {
+    console.error(resultado);
+    return;
+  }
 }
 
 if (error) {

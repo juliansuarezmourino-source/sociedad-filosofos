@@ -1,23 +1,54 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { Resend } from "resend";
-import { AUTH_COOKIE } from "../../../auth";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { jwtVerify } from "jose";
+import { AUTH_COOKIE, AUTH_SECRET } from "../../../auth";
 
 export async function POST(request: Request) {
-  // Comprobar que el usuario está autenticado como administrador
+  // Comprobar que existe la cookie de autenticación
   const cookieStore = await cookies();
-  const cookie = cookieStore.get(AUTH_COOKIE);
+  const token = cookieStore.get(AUTH_COOKIE)?.value;
 
-  if (!cookie) {
+  if (!token) {
     return NextResponse.json(
       { ok: false, error: "No autorizado" },
       { status: 401 }
     );
   }
 
+  // Verificar criptográficamente el JWT
   try {
+    const secret = new TextEncoder().encode(AUTH_SECRET);
+
+    await jwtVerify(token, secret, {
+      algorithms: ["HS256"],
+    });
+  } catch {
+    const response = NextResponse.json(
+      { ok: false, error: "No autorizado" },
+      { status: 401 }
+    );
+
+    response.cookies.delete(AUTH_COOKIE);
+
+    return response;
+  }
+
+  try {
+    // Comprobar que Resend está configurado
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      console.error("RESEND_API_KEY no está configurada");
+
+      return NextResponse.json(
+        { ok: false, error: "Servicio de correo no configurado" },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
+
     const { to, subject, html } = await request.json();
 
     if (!to || !subject || !html) {
@@ -28,7 +59,8 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilósofosautodidactas.org>",
+      from:
+        "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilósofosautodidactas.org>",
       to,
       subject,
       html,
