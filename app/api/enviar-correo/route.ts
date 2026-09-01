@@ -99,19 +99,27 @@ const html = `
       margin: 0;
       padding: 0;
       background: #f5f3ef;
-      font-family: Georgia, 'Times New Roman', serif;
       color: #1c1c1c;
+      font-family: Georgia, 'Times New Roman', serif;
     }
 
     .email-container {
       width: 100%;
       max-width: 650px;
       margin: 40px auto;
-      background: #ffffff;
       padding: 48px;
+      background: #ffffff;
+      font-family: Georgia, 'Times New Roman', serif;
     }
 
-    h1 {
+    .email-container p {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .email-container h1 {
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: 30px;
       line-height: 1.3;
       font-weight: normal;
@@ -120,26 +128,26 @@ const html = `
       word-wrap: break-word;
     }
 
-    p {
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
     @media only screen and (max-width: 600px) {
       .email-container {
+        width: 100%;
         margin: 0 auto;
         padding: 28px 22px;
       }
 
-      h1 {
-        font-size: 26px;
-        line-height: 1.3;
-        margin: 28px 0;
+      .email-container p {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 17px;
+        line-height: 1.7;
       }
 
-      p {
-        font-size: 16px;
-        line-height: 1.7;
+      .email-container h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 30px;
+        line-height: 1.3;
+        margin: 28px 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
       }
     }
   </style>
@@ -148,7 +156,7 @@ const html = `
 <body>
   <div class="email-container">
 
-    <div style="font-size:20px; margin-bottom:40px;">
+    <div style="font-family: Georgia, 'Times New Roman', serif; font-size:20px; margin-bottom:40px;">
       Sociedad de Filósofos Autodidactas
     </div>
 
@@ -177,7 +185,7 @@ const html = `
       </a>
     </p>
 
-    <div style="margin-top:60px; padding-top:20px; border-top:1px solid #ddd; font-size:14px; color:#666;">
+    <div style="margin-top:60px; padding-top:20px; border-top:1px solid #ddd; font-family:Georgia, 'Times New Roman', serif; font-size:14px; color:#666;">
       Sociedad de Filósofos Autodidactas
     </div>
 
