@@ -78,7 +78,9 @@ if (participantesError) {
   );
 }
 
-const destinatarios = ["viviana.sangenis@gmail.com"];
+const destinatarios = participantes
+  .map((participante) => participante.email)
+  .filter((email): email is string => Boolean(email));
 
 const subject = `Sociedad de Filósofos Autodidactas — ${titulo}`;
 
@@ -194,27 +196,43 @@ const html = `
 </html>
 `;
 
-const { data, error } = await resend.emails.send({
-  from:
-    "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
-  to: destinatarios,
-  subject,
-  html,
-});
+const resultadosEnvio = [];
 
-    if (error) {
-      console.error("Error de Resend:", error);
+for (const destinatario of destinatarios) {
+  const { data, error } = await resend.emails.send({
+    from:
+      "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
+    to: destinatario,
+    subject,
+    html,
+  });
 
-      return NextResponse.json(
-        { ok: false, error: error.message },
-        { status: 500 }
-      );
-    }
+  if (error) {
+    console.error(
+      `Error enviando a ${destinatario}:`,
+      error
+    );
 
-    return NextResponse.json({
-      ok: true,
-      id: data?.id,
+    resultadosEnvio.push({
+      destinatario,
+      ok: false,
+      error: error.message,
     });
+
+    continue;
+  }
+
+  resultadosEnvio.push({
+    destinatario,
+    ok: true,
+    id: data?.id,
+  });
+}
+
+return NextResponse.json({
+  ok: true,
+  resultados: resultadosEnvio,
+});
   } catch (error) {
     console.error("Error enviando correo:", error);
 
