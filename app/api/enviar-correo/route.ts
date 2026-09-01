@@ -89,19 +89,74 @@ const html = `
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f3ef;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #1c1c1c;
+    }
+
+    .email-container {
+      width: 100%;
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 48px;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.3;
+      font-weight: normal;
+      margin: 35px 0;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .email-container {
+        margin: 0 auto;
+        padding: 28px 22px;
+      }
+
+      h1 {
+        font-size: 26px;
+        line-height: 1.3;
+        margin: 28px 0;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.7;
+      }
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background:#f5f3ef; font-family: Georgia, 'Times New Roman', serif; color:#1c1c1c;">
-  <div style="max-width:650px; margin:40px auto; background:#ffffff; padding:48px;">
-    
+
+<body>
+  <div class="email-container">
+
     <div style="font-size:20px; margin-bottom:40px;">
       Sociedad de Filósofos Autodidactas
     </div>
 
-    <p style="font-size:17px; line-height:1.7;">
+    <p>
       Ponemos a disposición de los participantes una nueva publicación para su lectura.
     </p>
 
-    <p style="font-size:17px; line-height:1.7;">
+    <p>
       Os invitamos encarecidamente a que os presentéis en la pestaña de Comunidad del canal de YouTube.
       El compañero Sergio Javier Quesada ya ha dado el paso y nos placería que el resto de socios procedieseis del mismo modo.
       Si tenéis dudas de cómo llegar a la Comunidad de YouTube donde nos comunicamos, leed la última publicación de la Sociedad,
@@ -109,7 +164,7 @@ const html = `
       Muchas gracias.
     </p>
 
-    <h1 style="font-size:30px; line-height:1.3; font-weight:normal; margin:35px 0;">
+    <h1>
       ${titulo}
     </h1>
 
