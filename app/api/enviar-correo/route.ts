@@ -81,6 +81,10 @@ if (participantesError) {
 const destinatarios = participantes
   .map((participante) => participante.email)
   .filter((email): email is string => Boolean(email));
+  console.log("DIAGNÓSTICO ENVÍO:", {
+  totalParticipantes: participantes.length,
+  totalDestinatarios: destinatarios.length,
+});
 
 const subject = `Sociedad de Filósofos Autodidactas — ${titulo}`;
 
