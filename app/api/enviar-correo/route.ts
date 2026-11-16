@@ -1,13 +1,18 @@
+
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { Resend } from "resend";
 import { jwtVerify } from "jose";
 import { AUTH_COOKIE, AUTH_SECRET } from "../../../auth";
+
+export const maxDuration = 60;
+
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SECRET_KEY!
 );
+
 export async function POST(request: Request) {
   // Comprobar que existe la cookie de autenticación
   const cookieStore = await cookies();
@@ -34,7 +39,6 @@ export async function POST(request: Request) {
     );
 
     response.cookies.delete(AUTH_COOKIE);
-
     return response;
   }
 
@@ -53,44 +57,49 @@ export async function POST(request: Request) {
 
     const resend = new Resend(apiKey);
 
-const { titulo, slug } = await request.json();
+    const { titulo, slug } = await request.json();
 
-if (!titulo || !slug) {
-  return NextResponse.json(
-    { ok: false, error: "Faltan datos del artículo" },
-    { status: 400 }
-  );
-}
+    if (!titulo || !slug) {
+      return NextResponse.json(
+        { ok: false, error: "Faltan datos del artículo" },
+        { status: 400 }
+      );
+    }
 
-const { data: participantes, error: participantesError } =
-  await supabaseAdmin
-    .from("participantes")
-    .select("email")
-    .not("email", "is", null)
-    .neq("email", "");
+    // Recuperar participantes de Supabase
+    const { data: participantes, error: participantesError } =
+      await supabaseAdmin
+        .from("participantes")
+        .select("email")
+        .not("email", "is", null)
+        .neq("email", "");
 
-if (participantesError) {
-  console.error("Error obteniendo participantes:", participantesError);
+    if (participantesError) {
+      console.error(
+        "Error obteniendo participantes:",
+        participantesError
+      );
 
-  return NextResponse.json(
-    { ok: false, error: "No se pudieron obtener los destinatarios" },
-    { status: 500 }
-  );
-}
+      return NextResponse.json(
+        { ok: false, error: "No se pudieron obtener los destinatarios" },
+        { status: 500 }
+      );
+    }
 
-const destinatarios = participantes
-  .map((participante) => participante.email)
-  .filter((email): email is string => Boolean(email));
-  console.log("DIAGNÓSTICO ENVÍO:", {
-  totalParticipantes: participantes.length,
-  totalDestinatarios: destinatarios.length,
-});
+    const destinatarios = participantes
+      .map((participante) => participante.email)
+      .filter((email): email is string => Boolean(email));
 
-const subject = `Sociedad de Filósofos Autodidactas — ${titulo}`;
+    console.log("DIAGNÓSTICO ENVÍO:", {
+      totalParticipantes: participantes.length,
+      totalDestinatarios: destinatarios.length,
+    });
 
-const url = `https://www.sociedaddefilosofosautodidactas.org/articulos/${slug}`;
+    const subject = `Sociedad de Filósofos Autodidactas — ${titulo}`;
 
-const html = `
+    const url = `https://www.sociedaddefilosofosautodidactas.org/articulos/${slug}`;
+
+    const html = `
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -170,8 +179,6 @@ const html = `
       Ponemos a disposición de los participantes una nueva publicación para su lectura.
     </p>
 
-
-
     <h1>
       ${titulo}
     </h1>
@@ -194,49 +201,96 @@ const html = `
 </html>
 `;
 
-const resultadosEnvio = [];
+    const resultadosEnvio = [];
 
-return NextResponse.json({
-  diagnostico: true,
-  totalParticipantes: participantes.length,
-  totalDestinatarios: destinatarios.length,
-});
+    // Envío individual con límite de velocidad y reintentos 429
+    for (const [indice, destinatario] of destinatarios.entries()) {
+      if (indice > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      }
 
-for (const destinatario of destinatarios) {
-  const { data, error } = await resend.emails.send({
-    from:
-      "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
-    to: destinatario,
-    subject,
-    html,
-  });
+      let data = null;
+      let error = null;
 
-  if (error) {
-    console.error(
-      `Error enviando a ${destinatario}:`,
-      error
-    );
+      for (let intento = 1; intento <= 3; intento++) {
+        const resultado = await resend.emails.send({
+          from:
+            "Sociedad de Filósofos Autodidactas <noreply@sociedaddefilosofosautodidactas.org>",
+          to: destinatario,
+          subject,
+          html,
+        });
 
-    resultadosEnvio.push({
-      destinatario,
-      ok: false,
-      error: error?.message ?? "Error desconocido",
+        data = resultado.data;
+        error = resultado.error;
+
+        if (!error) {
+          break;
+        }
+
+        const mensajeError = error.message.toLowerCase();
+
+        const esLimiteVelocidad =
+          mensajeError.includes("too many requests") ||
+          mensajeError.includes("rate limit") ||
+          mensajeError.includes("429");
+
+        if (esLimiteVelocidad && intento < 3) {
+          console.warn(
+            `Límite de Resend para ${destinatario}. Reintento ${intento + 1}/3.`
+          );
+
+          await new Promise((resolve) =>
+            setTimeout(resolve, intento * 1000)
+          );
+
+          continue;
+        }
+
+        break;
+      }
+
+      if (error) {
+        console.error(
+          `Error enviando a ${destinatario}:`,
+          error
+        );
+
+        resultadosEnvio.push({
+          destinatario,
+          ok: false,
+          error: error.message ?? "Error desconocido",
+        });
+
+        continue;
+      }
+
+      resultadosEnvio.push({
+        destinatario,
+        ok: true,
+        id: data?.id,
+      });
+    }
+
+    const exitosos = resultadosEnvio.filter(
+      (resultado) => resultado.ok
+    ).length;
+
+    const fallidos = resultadosEnvio.length - exitosos;
+
+    console.log("RESULTADO FINAL DEL ENVÍO:", {
+      total: destinatarios.length,
+      exitosos,
+      fallidos,
     });
 
-    continue;
-  }
-
-  resultadosEnvio.push({
-    destinatario,
-    ok: true,
-    id: data?.id,
-  });
-}
-
-return NextResponse.json({
-  ok: true,
-  resultados: resultadosEnvio,
-});
+    return NextResponse.json({
+      ok: fallidos === 0,
+      total: destinatarios.length,
+      exitosos,
+      fallidos,
+      resultados: resultadosEnvio,
+    });
   } catch (error) {
     console.error("Error enviando correo:", error);
 
