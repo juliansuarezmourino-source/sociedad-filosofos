@@ -202,6 +202,12 @@ const html = `
 
 const resultadosEnvio = [];
 
+return NextResponse.json({
+  diagnostico: true,
+  totalParticipantes: participantes.length,
+  totalDestinatarios: destinatarios.length,
+});
+
 for (const destinatario of destinatarios) {
   const { data, error } = await resend.emails.send({
     from:
@@ -220,7 +226,7 @@ for (const destinatario of destinatarios) {
     resultadosEnvio.push({
       destinatario,
       ok: false,
-      error: error.message,
+      error: error?.message ?? "Error desconocido",
     });
 
     continue;
