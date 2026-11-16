@@ -170,13 +170,7 @@ const html = `
       Ponemos a disposición de los participantes una nueva publicación para su lectura.
     </p>
 
-    <p>
-      Os invitamos encarecidamente a que os presentéis en la pestaña de Comunidad del canal de YouTube.
-      El compañero Sergio Javier Quesada ya ha dado el paso y nos placería que el resto de socios procedieseis del mismo modo.
-      Si tenéis dudas de cómo llegar a la Comunidad de YouTube donde nos comunicamos, leed la última publicación de la Sociedad,
-      ved el último vídeo del canal o preguntad directamente a la presidenta, Viviana Sangenis.
-      Muchas gracias.
-    </p>
+
 
     <h1>
       ${titulo}
